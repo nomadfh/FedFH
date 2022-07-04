@@ -43,6 +43,7 @@ rm protonvpn-stable-release-1.0.1-1.noarch.rpm &&
 sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_36/hardware:razer.repo &&
 sudo dnf install openrazer-meta &&
 sudo dnf install openrazer-meta
+sudo gpasswd -a $USER plugdev
 # update dnf before installing Nvidia propietary drivers using akmod
 sudo dnf update --refresh -y &&
 sudo dnf install akmod-nvidia -y &&
