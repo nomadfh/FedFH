@@ -9,5 +9,9 @@ sudo dnf copr enable joseexposito/touchegg &&
 sudo dnf install touchegg &&
 sudo systemctl enable touchegg.service &&
 sudo systemctl start touchegg
+# Install System 76 Task Scheduler
+sudo dnf install system76-scheduler
+# Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
+sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell
 
 echo "Good Job! Now install the DOD PKI certificates."
