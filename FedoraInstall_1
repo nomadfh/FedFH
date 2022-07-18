@@ -1,6 +1,6 @@
 #!/bin/bash
 # Add dnf config modifications to config file
-echo -e 'fastest_mirror=True\nmax_parallel_downloads=20\ndefaultyes=True' | sudo tee -a /etc/dnf/dnf.conf &&
+echo -e 'max_parallel_downloads=20\ndefaultyes=True' | sudo tee -a /etc/dnf/dnf.conf &&
 # Change hostname
 echo -e 'Sitara' | sudo tee /etc/hostname
 # add flathub repo
