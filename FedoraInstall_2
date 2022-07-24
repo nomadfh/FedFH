@@ -10,6 +10,7 @@ sudo dnf install touchegg &&
 sudo systemctl enable touchegg.service &&
 sudo systemctl start touchegg
 # Install System 76 Task Scheduler
+dnf copr enable mjakeman/system76-scheduler 
 sudo dnf install system76-scheduler
 # Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
 sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell
@@ -21,5 +22,8 @@ sudo dnf install $HOME/megasync-Fedora_36.x86_64.rpm
 # Install Nautilus Plugin for  MEGA
 wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm
 sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm
-  
+# Install, Start, and Enable TLP for battery management
+sudo dnf install -y tlp
+sudo systemctl start tlp &&
+sudo systemctl enable tlp &&   
 echo "V Has Come to"
