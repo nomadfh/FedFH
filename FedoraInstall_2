@@ -13,5 +13,13 @@ sudo systemctl start touchegg
 sudo dnf install system76-scheduler
 # Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
 sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell
-
-echo "Good Job! Now install the DOD PKI certificates."
+# Install Popular Gnome-Shell extensions
+sudo dnf install gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-caffeine.noarch gnome-shell-extension-user-theme.noarch
+# Install  MEGA cloud storage Fedora 36
+wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm
+sudo dnf install $HOME/megasync-Fedora_36.x86_64.rpm
+# Install Nautilus Plugin for  MEGA
+wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm
+sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm
+  
+echo "V Has Come to"
