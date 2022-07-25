@@ -11,7 +11,7 @@ sudo dnf install \
 sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
-sudo dnf install -y vlc htop tlp gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix google-chrome-stable nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc &&
+sudo dnf install -y vlc htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix google-chrome-stable nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc &&
 # install flatpak applications
 flatpak install -y org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.gnome.Extensions org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.yuzu_emu.yuzu xyz.z3ntu.razergenie &&
 #Install Microsoft Edge
