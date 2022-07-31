@@ -26,4 +26,4 @@ sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm
 sudo dnf install -y tlp
 sudo systemctl start tlp &&
 sudo systemctl enable tlp &&   
-echo "V Has Come to"
+echo "Don't forget to install X11 Gestures, Alphabetical App Grid, and Applicaiton Mixer"
