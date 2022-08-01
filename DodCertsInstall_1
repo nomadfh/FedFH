@@ -1,3 +1,4 @@
+#!/bin/bash
 # Download dod pki certificates
 wget https://dl.dod.cyber.mil/wp-content/uploads/pki-pke/zip/certificates_pkcs7_DoD.zip &&
 unzip certificates_pkcs7_DoD.zip &&
