@@ -22,6 +22,9 @@ sudo dnf install $HOME/megasync-Fedora_36.x86_64.rpm
 # Install Nautilus Plugin for  MEGA
 wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm
 sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm
+# Install Insync Cloud provider
+wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync-3.7.9.50368-fc36.x86_64.rpm &&
+sudo dnf install insync-*
 # Install, Start, and Enable TLP for battery management
 sudo dnf install -y tlp
 sudo systemctl start tlp &&
