@@ -10,8 +10,17 @@ sudo dnf install touchegg &&
 sudo systemctl enable touchegg.service &&
 sudo systemctl start touchegg
 # Install System 76 Task Scheduler
+sudo dnf copr enable mjakeman/system76-scheduler &&
 sudo dnf install system76-scheduler
 # Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
-sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell
-
+sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell &&
+# Install tlp and start tlp service
+sudo dnf install tlp tlp-rdw &&
+sudo systemctl enable tlp.service &&
+sudo systemctl start tlp.service
+# Add some popular gnome-shell extensions
+gnome-shell-extension-caffeine.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-user-theme.noarch
+# Install MegaSync and its Nautilus extension
+wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm && wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm &&
+sudo dnf install megasync-Fedora_36.x86_64.rpm && sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm 
 echo "Good Job! Now install the DOD PKI certificates."

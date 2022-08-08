@@ -9,5 +9,4 @@ for n in *.p7b; do certutil -d sql:$HOME/.pki/nssdb -A -t TC -n $n -i $n; done ;
 # display status of installed certs on machine
 certutil -d sql:$HOME/.pki/nssdb/ -L &&
 # add CAC module to opensc
-modutil -dbdir sql:.pki/nssdb/ -add “CAC_Module” -libfile /usr/lib64/pkcs11/p11-kit-client.so &&
-echo "V has come to"  
+modutil -dbdir sql:.pki/nssdb/ -add “CAC_Module” -libfile /usr/lib64/pkcs11/p11-kit-client.so  
