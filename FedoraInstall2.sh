@@ -13,7 +13,8 @@ sudo systemctl start touchegg
 sudo dnf copr enable mjakeman/system76-scheduler &&
 sudo dnf install system76-scheduler
 # Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
-sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell && systemctl start com.system76.Scheduler systemctl enable com.system76.Scheduler
+sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell &&
+sudo systemctl start com.system76.Scheduler && systemctl enable com.system76.Scheduler
 # Install tlp and start tlp service
 sudo dnf install tlp tlp-rdw &&
 sudo systemctl enable tlp.service &&
@@ -24,5 +25,5 @@ sudo dnf install gnome-shell-extension-caffeine.noarch gnome-shell-extension-app
 wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm && wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm &&
 sudo dnf install megasync-Fedora_36.x86_64.rpm && sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm 
 # Install Insync
-wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync-3.7.9.50368-fc36.x86_64.rpm && dnf install insync* &&
+wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync-3.7.9.50368-fc36.x86_64.rpm && sudo dnf install insync* &&
 echo "Good Job! Now install the DOD PKI certificates."
