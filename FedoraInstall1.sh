@@ -31,6 +31,16 @@ sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install -y brave-browser &&
 # perform a dnf update
 sudo dnf update -y &&
+# download protonvpn-cli from website using wget
+wget https://protonvpn.com/download/protonvpn-stable-release-1.0.1-1.noarch.rpm &&
+# install protonvpn-cli
+sudo dnf install protonvpn-stable-release-1.0.1-1.noarch.rpm -y &&
+# perform a dnf update
+sudo dnf update -y &&
+# install protonvpn-cli
+sudo dnf install protonvpn-cli -y &&
+protonvpn-cli login nomadfh &&
+rm protonvpn-stable-release-1.0.1-1.noarch.rpm &&
 # install openrazer dependencies 
 sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_36/hardware:razer.repo &&
 sudo dnf install openrazer-meta &&
