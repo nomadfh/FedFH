@@ -23,7 +23,5 @@ sudo systemctl start tlp.service
 sudo dnf install gnome-shell-extension-caffeine.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-user-theme.noarch
 # Install MegaSync and its Nautilus extension
 wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm && wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm &&
-sudo dnf install megasync-Fedora_36.x86_64.rpm && sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm 
-# Install Insync
-wget https://d2t3ff60b2tol4.cloudfront.net/builds/insync-3.7.9.50368-fc36.x86_64.rpm && sudo dnf install insync* &&
+sudo dnf install megasync-Fedora_36.x86_64.rpm && sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm && 
 echo "Good Job! Now install the DOD PKI certificates."
