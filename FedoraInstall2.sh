@@ -20,8 +20,11 @@ sudo dnf install tlp tlp-rdw &&
 sudo systemctl enable tlp.service &&
 sudo systemctl start tlp.service
 # Add some popular gnome-shell extensions
-sudo dnf install gnome-shell-extension-caffeine.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-user-theme.noarch
-# Install MegaSync and its Nautilus extension
-wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm && wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm &&
-sudo dnf install megasync-Fedora_36.x86_64.rpm && sudo dnf install nautilus-megasync-Fedora_36.x86_64.rpm && 
+sudo dnf install gnome-shell-extension-caffeine.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-user-theme.noarch &&
+# Download virtualbox using wget
+wget https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1-6.1.36_152435_fedora36-1.x86_64.rpm &&
+# Install virtualbox
+sudo dnf install VirtualBox-*
+# Download virtualbox extension pack
+wget https://download.virtualbox.org/virtualbox/6.1.36/Oracle_VM_VirtualBox_Extension_Pack-6.1.36a-152435.vbox-extpack &&
 echo "Good Job! Now install the DOD PKI certificates."
