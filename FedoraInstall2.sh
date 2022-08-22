@@ -27,4 +27,10 @@ wget https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1-6.1.36_152
 sudo dnf install VirtualBox-*
 # Download virtualbox extension pack
 wget https://download.virtualbox.org/virtualbox/6.1.36/Oracle_VM_VirtualBox_Extension_Pack-6.1.36a-152435.vbox-extpack &&
+#Download MEGA cloud sync and Nautilus extension
+wget https://mega.nz/linux/repo/Fedora_36/x86_64/megasync-Fedora_36.x86_64.rpm && wget https://mega.nz/linux/repo/Fedora_36/x86_64/nautilus-megasync-Fedora_36.x86_64.rpm
+# Install MEGA
+sudo dnf install -y megasync-* &&
+# Install MEGA nautilus extension
+sudo dnf install -y nautilus-megasync-*
 echo "Good Job! Now install the DOD PKI certificates."
