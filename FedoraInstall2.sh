@@ -22,11 +22,11 @@ sudo systemctl start tlp.service
 # Add some popular gnome-shell extensions
 sudo dnf install gnome-shell-extension-caffeine.noarch gnome-shell-extension-appindicator.noarch gnome-shell-extension-sound-output-device-chooser.noarch gnome-shell-extension-user-theme.noarch &&
 # Download virtualbox using wget
-wget https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1-6.1.36_152435_fedora36-1.x86_64.rpm &&
+wget https://download.virtualbox.org/virtualbox/6.1.38/VirtualBox-6.1-6.1.38_153438_fedora36-1.x86_64.rpm &&
 # Install virtualbox
 sudo dnf install VirtualBox-*
 # Download virtualbox extension pack
-wget https://download.virtualbox.org/virtualbox/6.1.36/Oracle_VM_VirtualBox_Extension_Pack-6.1.36a-152435.vbox-extpack &&
+wget https://download.virtualbox.org/virtualbox/6.1.38/Oracle_VM_VirtualBox_Extension_Pack-6.1.38.vbox-extpack &&
 # Add user to vboxusers group to enable usb passthrough
 sudo usermod -a -G vboxusers $USER
 #Download MEGA cloud sync and Nautilus extension
