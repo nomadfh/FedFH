@@ -25,6 +25,9 @@ flatpak install -y org.standardnotes.standardnotes com.mattjakeman.ExtensionMana
 sudo dnf update -y &&
 # perform a dnf update
 sudo dnf update -y &&
+# Install yumex-dnf (dnf GUI frontend) from COPR
+sudo dnf copr enable timlau/yumex-dnf -y
+sudo dnf install yumex-dnf -y &&
 # install openrazer dependencies 
 sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_36/hardware:razer.repo &&
 sudo dnf install openrazer-meta &&
