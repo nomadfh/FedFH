@@ -9,12 +9,6 @@ sudo dnf copr enable joseexposito/touchegg &&
 sudo dnf install touchegg &&
 sudo systemctl enable touchegg.service &&
 sudo systemctl start touchegg
-# Install System 76 Task Scheduler
-sudo dnf copr enable mjakeman/system76-scheduler &&
-sudo dnf install system76-scheduler
-# Install System 76 Pop Shell extension and excluse keyboard shortcut overrides
-sudo dnf install -y --setopt=exclude=gnome-shell-extension-pop-shell-shortcut-overrides gnome-shell-extension-pop-shell &&
-sudo systemctl start com.system76.Scheduler && systemctl enable com.system76.Scheduler
 # Install tlp and start tlp service
 sudo dnf install tlp tlp-rdw &&
 sudo systemctl enable tlp.service &&
