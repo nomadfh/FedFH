@@ -10,4 +10,8 @@ for n in *.p7b; do certutil -d sql:$HOME/.pki/nssdb -A -t TC -n $n -i $n; done ;
 certutil -d sql:$HOME/.pki/nssdb/ -L &&
 cd $HOME
 # add CAC module to opensc
-modutil -dbdir sql:.pki/nssdb/ -add “CAC_Module” -libfile /usr/lib64/pkcs11/p11-kit-client.so  
+modutil -dbdir sql:.pki/nssdb/ -add “CAC_Module” -libfile /usr/lib64/pkcs11/p11-kit-client.so &&
+mkdir DODcerts &&
+mv Certificates_PKCS7* DODcerts &&
+mv certificates_PKCS7* DODcerts &&
+echo "All done!"
