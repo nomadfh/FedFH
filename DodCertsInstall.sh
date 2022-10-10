@@ -13,5 +13,5 @@ cd $HOME
 modutil -dbdir sql:.pki/nssdb/ -add “CAC_Module” -libfile /usr/lib64/pkcs11/p11-kit-client.so &&
 mkdir DODcerts &&
 mv Certificates_PKCS7* DODcerts &&
-mv certificates_PKCS7* DODcerts &&
+mv certificates_* DODcerts &&
 echo "All done!"
