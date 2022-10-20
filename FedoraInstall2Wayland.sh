@@ -1,4 +1,4 @@
-/bin/bash
+#/bin/bash
 # set default monitor for gdm login screen
 sudo cp ~/.config/monitors.xml ~gdm/.config/ &&
 # set tap to click on gdm login screen
