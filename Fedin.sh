@@ -18,7 +18,7 @@ sudo dnf install -y \
 # install rpm applications
 sudo dnf install -y vlc htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc &&
 # install flatpak applications
-flatpak install -y flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.gnome.Extensions org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.yuzu_emu.yuzu xyz.z3ntu.razergenie &&
+flatpak install -y flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.gnome.Extensions org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors &&
 # perform a dnf update
 sudo dnf update -y &&
 # perform a dnf update
@@ -26,11 +26,6 @@ sudo dnf update -y &&
 # Install yumex-dnf (dnf GUI frontend) from COPR
 sudo dnf copr enable timlau/yumex-dnf -y
 sudo dnf install yumex-dnf -y &&
-# install openrazer dependencies 
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_36/hardware:razer.repo &&
-sudo dnf install -y openrazer-meta &&
-sudo dnf install -y openrazer-meta
-sudo gpasswd -a $USER plugdev
 # update dnf before installing Nvidia propietary drivers using akmod
 sudo dnf update --refresh -y &&
 sudo dnf install akmod-nvidia -y &&
