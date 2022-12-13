@@ -28,6 +28,8 @@ sudo dnf install microsoft-edge-stable &&
 # Install yumex-dnf (dnf GUI frontend) from COPR
 sudo dnf copr enable timlau/yumex-dnf -y
 sudo dnf install yumex-dnf -y &&
+# Add fractional scaling support to GNOME
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 # update dnf before installing Nvidia propietary drivers using akmod
 sudo dnf update --refresh -y &&
 sudo dnf install akmod-nvidia -y &&
