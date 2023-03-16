@@ -18,7 +18,7 @@ sudo dnf install -y \
 # install rpm applications
 sudo dnf install -y vlc htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb &&
 # install flatpak applications
-flatpak install -y flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors &&
+flatpak install -y flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.gnome.Dictionary io.github.aandrew_me.ytdn &&
 # perform a dnf update
 sudo dnf update -y &&
 # Install Microsoft Edge from their repositories
