@@ -28,6 +28,9 @@ sudo dnf install microsoft-edge-stable &&
 # Install yumex-dnf (dnf GUI frontend) from COPR
 sudo dnf copr enable timlau/yumex-dnf -y
 sudo dnf install yumex-dnf -y &&
+# Create a hidden vimrc file and enable line number indicators in Vim
+touch .vimrc &&
+echo "set nu" >> .vimrc
 # Add fractional scaling support to GNOME
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 # update dnf before installing Nvidia propietary drivers using akmod
