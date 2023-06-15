@@ -16,18 +16,15 @@ sudo dnf install \
 sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
-sudo dnf install -y vlc htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb &&
+sudo dnf install -y powertop htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb &&
 # install flatpak applications
-flatpak install -y flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.gnome.Dictionary io.github.aandrew_me.ytdn &&
+flatpak install -y org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.gnome.Dictionary io.github.aandrew_me.ytdn &&
 # perform a dnf update
 sudo dnf update -y &&
 # Install Microsoft Edge from their repositories
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge &&
 sudo dnf install microsoft-edge-stable &&
-# Install yumex-dnf (dnf GUI frontend) from COPR
-sudo dnf copr enable timlau/yumex-dnf -y
-sudo dnf install yumex-dnf -y &&
 # Create a hidden vimrc file and enable line number indicators in Vim
 touch .vimrc &&
 echo "set nu" >> .vimrc
