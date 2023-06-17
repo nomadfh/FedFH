@@ -16,9 +16,10 @@ sudo dnf install \
 sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
-sudo dnf install -y powertop htop gnome-tweaks steam wine lutris neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb &&
+sudo dnf install -y powertop htop gnome-tweaks wine neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # install flatpak applications
-flatpak install -y org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors org.gnome.Dictionary io.github.aandrew_me.ytdn &&
+flatpak install -y org.libreoffice.LibreOffice com.raggesilver.BlackBox com.valvesoftware.Steam net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors io.github.aandrew_me.ytdn &&
+# Remove redundant graphical RPM applications
 # perform a dnf update
 sudo dnf update -y &&
 # Install Microsoft Edge from their repositories
