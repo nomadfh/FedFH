@@ -18,7 +18,7 @@ sudo dnf install -y \
 # install rpm applications
 sudo dnf install -y powertop protontricks htop gnome-tweaks wine neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # install flatpak applications
-flatpak install -y valvesoftware.Steam net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors io.github.aandrew_me.ytdn &&
+flatpak install -y com.valvesoftware.Steam net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors io.github.aandrew_me.ytdn &&
 # Remove redundant graphical RPM applications
 # perform a dnf update
 sudo dnf update -y &&
@@ -44,3 +44,4 @@ case $yn in
 	* ) echo invalid response;
 		exit 1;;
 esac
+
