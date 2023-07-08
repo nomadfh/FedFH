@@ -2,7 +2,7 @@
 # Add dnf config modifications to config file
 echo -e 'max_parallel_downloads=20\ndefaultyes=True' | sudo tee -a /etc/dnf/dnf.conf &&
 # Change hostname
-echo -e 'Sitara' | sudo tee /etc/hostname
+echo 'Sitara' | sudo tee /etc/hostname
 # Add Vim as default Text Editor by editing user bashrc
 echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | sudo tee -a ~/.bashrc
 # Save display configs in gnome display manager settings
@@ -16,7 +16,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 sudo dnf install \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm &&
 sudo dnf install -y \
-  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
+o  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
 sudo dnf install -y powertop protontricks htop gnome-tweaks wine neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # install flatpak applications
@@ -29,7 +29,6 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge &&
 sudo dnf install microsoft-edge-stable &&
 # Create a hidden vimrc file and enable line number indicators in Vim
-touch .vimrc &&
 echo "set nu" >> .vimrc
 # Add fractional scaling support to GNOME
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
