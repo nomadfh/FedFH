@@ -16,7 +16,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 sudo dnf install \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm &&
 sudo dnf install -y \
-o  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
+  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
 sudo dnf install -y powertop htop gnome-tweaks wine neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # install flatpak applications
@@ -28,6 +28,10 @@ sudo dnf update -y &&
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge &&
 sudo dnf install microsoft-edge-stable &&
+# Add gnome shell extensions
+sudo dnf install gnome-shell-extension-appindicator-53-1.fc38.noarch
+sudo dnf install gnome-shell-extension-pop-shell
+sudo dnf install gnome-shell-extension-caffeine
 # Create a hidden vimrc file and enable line number indicators in Vim
 echo "set nu" >> .vimrc
 # Add fractional scaling support to GNOME
