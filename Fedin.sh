@@ -20,8 +20,9 @@ sudo dnf install -y \
 # install rpm applications
 sudo dnf install -y powertop htop gnome-tweaks wine neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # install flatpak applications
-flatpak install -y com.valvesoftware.Steam com.github.Matoking.protontricks org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent flathub org.onlyoffice.desktopeditors io.github.aandrew_me.ytdn com.obsproject.Studio &&
-# Remove redundant graphical RPM applications
+flatpak install -y flathub org.libreoffice.LibreOffice com.valvesoftware.Steam com.github.Matoking.protontricks org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
+# Remove unwanted graphical RPM applications
+sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice*  
 # perform a dnf update
 sudo dnf update -y &&
 # Install Microsoft Edge from their repositories
@@ -31,7 +32,7 @@ sudo dnf install microsoft-edge-stable &&
 # Add gnome shell extensions
 sudo dnf install -y gnome-shell-extension-pop-shell gnome-shell-extension-caffeine gnome-shell-extension-appindicator
 # Create a hidden vimrc file and enable line number indicators in Vim
-echo "set nu" >> .vimrc
+echo "# set nu" >> .vimrc
 # Add fractional scaling support to GNOME
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 # update dnf before installing Nvidia propietary drivers using akmod
