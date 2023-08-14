@@ -30,7 +30,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge &&
 sudo dnf install microsoft-edge-stable &&
 # Add gnome shell extensions
-sudo dnf install -y gnome-shell-extension-pop-shell gnome-shell-extension-caffeine gnome-shell-extension-appindicator
+sudo dnf install -y gnome-shell-extension-caffeine gnome-shell-extension-appindicator
 # Create a hidden vimrc file and enable line number indicators in Vim
 echo "# set nu" >> .vimrc
 # Add fractional scaling support to GNOME
