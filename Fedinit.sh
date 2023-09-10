@@ -34,7 +34,7 @@ sudo dnf install microsoft-edge-stable &&
 # Add gnome shell extensions
 sudo dnf install -y gnome-shell-extension-caffeine gnome-shell-extension-appindicator
 # Create a hidden vimrc file and enable line number indicators in Vim
-echo "# set nu" >> .vimrc
+touch .vimrc
 # Add fractional scaling support to GNOME
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 # update dnf before installing Nvidia propietary drivers using akmod
