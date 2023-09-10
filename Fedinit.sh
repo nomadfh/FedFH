@@ -23,6 +23,8 @@ sudo dnf install -y VirtualBox powertop htop gnome-tweaks wine neofetch vim time
 flatpak install -y flathub org.libreoffice.LibreOffice com.valvesoftware.Steam com.github.Matoking.protontricks org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder net.lutris.Lutris org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 # Remove unwanted graphical RPM applications
 sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice*  
+# Add user to vboxusers group to enable usb passthrough in VirtualBox
+sudo usermod -aG vboxusers $USER
 # perform a dnf update
 sudo dnf update -y &&
 # Install Microsoft Edge from their repositories
