@@ -27,10 +27,6 @@ sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice*
 sudo usermod -aG vboxusers $USER
 # perform a dnf update
 sudo dnf update -y &&
-# Install Microsoft Edge from their repositories
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
-sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge &&
-sudo dnf install microsoft-edge-stable &&
 # Add gnome shell extensions
 sudo dnf install -y gnome-shell-extension-caffeine gnome-shell-extension-appindicator
 # Create a hidden vimrc file and enable line number indicators in Vim
