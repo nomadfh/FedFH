@@ -2,12 +2,18 @@
 cd $HOME
 clear
 # Display the warning message and prompt for confirmation
-echo "Linux Install Script 1.2  Updated NOV 11 2023"
-read -p $'\n\nThis Install Script assumes you have both Mozilla Firefox and Chromium\ninstalled. The Script will still run if you only have Firefox or Chromium installed,\nbut it will not complete successfully if you have yet to open the browser.\n\nEnsure that you have already opened both Mozilla Firefox and Chromium \nbefore continuing with this script, and that both programs are closed.\n\nDo you wish to continue? (yes/y): ' confirm
+echo "Linux Install Script 1.0  Updated July 4th, 2023"
+read -p $'\n\nThis Install Script assumes you have both Mozilla Firefox and Chromium\ninstalled. Only the native versions of these packages are supported.\nIf you have the Snap, Flatpak, or Appimage versions of these browsers\ninstalled, install the native versions before running this script.\nThe Script will still run if you only have Firefox or Chromium installed,\nbut it will not complete successfully if you have yet to open the browser.\n\nEnsure that you have already opened both Mozilla Firefox and Chromium \nbefore continuing with this script, and that both programs are closed.\n\nDo you wish to continue? (yes/y): ' confirm
 
 if [[ ! $confirm =~ ^[Yy][Ee]?[Ss]?$ ]]; then
   echo "Installation aborted."
   exit 0
+fi
+
+# Remove existing AllCerts.zip file
+if [ -f AllCerts.zip ]; then
+  echo "Removing existing AllCerts.zip file..."
+  rm AllCerts.zip
 fi
 
 # Check for updates before downloading certificates
