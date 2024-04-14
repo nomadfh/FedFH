@@ -19,6 +19,8 @@ sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
 sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
+# Install multimedia codecs
+sudo dnf group install -y --allowerasing Multimedia &&
 # install flatpak applications
 flatpak install -y com.valvesoftware.Steam net.lutris.Lutris com.github.Matoking.protontricks org.winehq.Wine org.onlyoffice.desktopeditors io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 # Remove unwanted graphical RPM applications
