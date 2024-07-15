@@ -18,7 +18,7 @@ sudo dnf install \
 sudo dnf install -y \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 # install rpm applications
-sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks neofetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
+sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks fastfetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 # Install multimedia codecs
 sudo dnf group install -y --allowerasing Multimedia &&
 # install flatpak applications
