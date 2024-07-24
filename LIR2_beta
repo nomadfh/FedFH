@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Script to download DoD certificates, trust all certificates in the NSS database, and provide a summary
+
+# Set variables
+DOD_CERTS_URL="https://militarycac.com/maccerts/AllCerts.zip"
+NSSDB_DIR="$HOME/.pki/nssdb"
+
+# Create temporary directory for download
+temp_dir=$(mktemp -d)
+
+# Download the certificate bundle directly
+echo "1. Downloading certificates from: $DOD_CERTS_URL"
+curl -s -L -o "$temp_dir/dod_certs.zip" "$DOD_CERTS_URL"
+
+# Extract certificates
+echo "2. Extracting certificates..."
+unzip "$temp_dir/dod_certs.zip" -d "$temp_dir"
+
+# Install and trust ALL certificates into NSS database
+echo "3. Importing and trusting ALL certificates into NSS database..."
+imported_certs=()  # Array to store imported certificate names
+for cert in "$temp_dir"/*.cer; do
+    cert_name=$(basename "$cert" | sed 's/\.cer//')
+    echo "    - Importing and trusting: $cert_name"
+    certutil -d sql:"$NSSDB_DIR" -A -t "CT,CT,CT" -n "$cert_name" -i "$cert"
+    imported_certs+=("$cert_name")  # Add to array
+done
+
+# Clean up temporary files
+echo "4. Cleaning up temporary files..."
+rm -rf "$temp_dir"
+
+# Summary of actions
+echo ""  # Add a blank line for separation
+echo "Summary of Actions:"
+for i in "${!imported_certs[@]}"; do
+    echo "$((i+1)). Imported and trusted certificate: ${imported_certs[$i]}"
+done
+
