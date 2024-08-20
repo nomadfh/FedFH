@@ -1,40 +1,102 @@
-#!/bin/bash
+cd $HOME
+clear
+# Display the warning message and prompt for confirmation
+echo "Linux Installroot (unofficial)  Updated NOV 14 2023"
+read -p $'\n\nThis Install Script assumes you have Mozilla Firefox and/or a Chromium based browser, such as Google Chrome or Microsoft Edge,\ninstalled. The Script will still run if you only have one of either installed,but it will not complete successfully if you\nhave yet to open the browser. Only Flatpak versions of Firefox and Edge are supported.\n\nEnsure that you have already opened your preferred browser(s) \nbefore continuing with this script, and that the browsers are closed.\n\nDo you wish to continue? (yes/y): ' confirm
 
-# Script to download DoD certificates, trust all certificates in the NSS database, and provide a summary
+if [[ ! $confirm =~ ^[Yy][Ee]?[Ss]?$ ]]; then
+  echo "Installation aborted."
+  exit 0
+fi
 
-# Set variables
-DOD_CERTS_URL="https://militarycac.com/maccerts/AllCerts.zip"
-NSSDB_DIR="$HOME/.pki/nssdb"
+clear
+echo "Installing smart card and certificate dependencies."
+sleep 2
+# Check if apt is installed
+if [ -x /usr/bin/apt ]; then
+    # Install Ubuntu-specific packages
+    sudo apt-get install pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools
+    echo "These packages have been installed on your Ubuntu system."
+else
+    # Check if yum is installed
+    if [ -x /usr/bin/yum ]; then
+        # Install Red Hat/CentOS-specific packages
+        sudo yum install nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc
+        echo "These packages have been installed on your Red Hat/CentOS/Fedora system."
+    # Check if zypper is installed
+    elif [ -x /usr/bin/zypper ]; then
+        # Install openSUSE-specific packages
+        sudo zypper install nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc
+        echo "These packages have been installed on your openSUSE system."
+    # Check if pacman is installed
+    elif [ -x /usr/bin/pacman ]; then
+        # Install Arch Linux-specific packages
+        sudo pacman -S nss pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools 
+        echo "These packages have been installed on your Arch Linux system."
+    else
+        echo "This is an unknown distribution."
+    fi
+fi
+echo
+echo
+echo
+sleep 2
+# Remove any preexisting bundles
+rm -f AllCerts.zip*
+# Download individual certs from MilitaryCAC's Mac bundle
+echo "Downloading individual certificates from MilitaryCAC's Mac bundle..."
+wget https://militarycac.com/maccerts/AllCerts.zip
+echo "Download complete."
+# Unzip File and place it in a new DoDcerts Folder
+echo "Unzipping the AllCerts.zip file..."
+unzip AllCerts.zip -d DoDcerts && rm AllCerts.zip
+echo
+echo "Unzip complete."
+echo
+# Change into the newly created DoDcerts folder
+cd DoDcerts
 
-# Create temporary directory for download
-temp_dir=$(mktemp -d)
+# Find the correct Firefox profile directory
+FIREFOX_PROFILE=$(find ~/.var/app/org.mozilla.firefox/.mozilla/firefox/ -maxdepth 1 -name "*default-release" -type d)
 
-# Download the certificate bundle directly
-echo "1. Downloading certificates from: $DOD_CERTS_URL"
-curl -s -L -o "$temp_dir/dod_certs.zip" "$DOD_CERTS_URL"
-
-# Extract certificates
-echo "2. Extracting certificates..."
-unzip "$temp_dir/dod_certs.zip" -d "$temp_dir"
-
-# Install and trust ALL certificates into NSS database
-echo "3. Importing and trusting ALL certificates into NSS database..."
-imported_certs=()  # Array to store imported certificate names
-for cert in "$temp_dir"/*.cer; do
-    cert_name=$(basename "$cert" | sed 's/\.cer//')
-    echo "    - Importing and trusting: $cert_name"
-    certutil -d sql:"$NSSDB_DIR" -A -t "CT,CT,CT" -n "$cert_name" -i "$cert"
-    imported_certs+=("$cert_name")  # Add to array
+# Import all individual .cer files into the Firefox (Flatpak) certificate database
+echo "Importing individual .cer files into the Firefox (Flatpak) certificate database..."
+for n in *.cer; do
+  cert_name="$(basename "$n" .cer)"
+  # Check if the certificate is already imported
+  if certutil -L -d "$FIREFOX_PROFILE" | grep -q "$cert_name"; then
+    echo "Certificate $cert_name is already imported. Skipping..."
+  else
+    echo "Importing $n..."
+    certutil -A -d "$FIREFOX_PROFILE" -i "$n" -n "$cert_name" -t "CT,C,C"
+  fi
 done
-
-# Clean up temporary files
-echo "4. Cleaning up temporary files..."
-rm -rf "$temp_dir"
-
-# Summary of actions
-echo ""  # Add a blank line for separation
-echo "Summary of Actions:"
-for i in "${!imported_certs[@]}"; do
-    echo "$((i+1)). Imported and trusted certificate: ${imported_certs[$i]}"
+echo
+echo "Import into the Firefox certificate database complete."
+echo
+# Import only updated or new certificates into the NSSDB (Flatpak Edge) certificate database
+echo "Importing individual .cer files into the Chromium (Edge Flatpak) certificate database..."
+for n in *.cer; do
+  cert_name="$(basename "$n" .cer)"
+  # Check if the certificate is already imported or up to date
+  if certutil -L -d /home/nomadfh/.var/app/com.microsoft.Edge/.pki/nssdb | grep -q "$cert_name" && [[ "$(certutil -V -u C -n "$cert_name" -d /home/nomadfh/.var/app/com.microsoft.Edge/.pki/nssdb | grep -c 'Not After')" -eq 0 ]]; then
+    echo "Certificate $cert_name is already imported and up to date. Skipping..."
+  else
+    echo "Importing $n..."
+    certutil -A -d /home/nomadfh/.var/app/com.microsoft.Edge/.pki/nssdb -i "$n" -n "$cert_name" -t "CT,CT,C"
+  fi
 done
+echo
+echo "Import into the NSSDB certificate database complete."
+echo
+# List the contents of the NSSDB (Flatpak Edge) certificate database
+echo -e "\n\n\nHere's what's in the NSSDB (Flatpak Edge) certificate database..."
+certutil -L -d /home/nomadfh/.var/app/com.microsoft.Edge/.pki/nssdb
+
+# List the contents of the modified Firefox (Flatpak) certificate database
+echo -e "\n\n\nHere's what's in the Firefox (Flatpak) Certificate Database..."
+certutil -L -d "$FIREFOX_PROFILE"
+echo -e "\n\n\nAll Done!"
+
+
 
