@@ -2,7 +2,7 @@
 # Add dnf config modifications to config file
 echo -e 'max_parallel_downloads=20\ndefaultyes=True' | sudo tee -a /etc/dnf/dnf.conf &&
 # Change hostname
-echo 'Sitara' | sudo tee /etc/hostname
+# echo 'Sitara' | sudo tee /etc/hostname
 # Add Vim as default Text Editor by editing user bashrc
 echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | sudo tee -a ~/.bashrc
 # Save display configs in gnome display manager settings
@@ -30,15 +30,15 @@ sudo usermod -aG vboxusers $USER
 # perform a dnf update
 sudo dnf update -y &&
 # Add gnome shell extensions
-sudo dnf install -y gnome-shell-extension-caffeine gnome-shell-extension-appindicator
+# sudo dnf install -y gnome-shell-extension-caffeine gnome-shell-extension-appindicator
 # Create a hidden vimrc file and enable line number indicators in Vim
 touch .vimrc
 # Add fractional scaling support to GNOME
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 # update dnf before installing Nvidia propietary drivers using akmod
-sudo dnf update --refresh -y &&
-sudo dnf install akmod-nvidia -y &&
-sudo dnf install xorg-x11-drv-nvidia-cuda -y &&
+# sudo dnf update --refresh -y &&
+# sudo dnf install akmod-nvidia -y &&
+# sudo dnf install xorg-x11-drv-nvidia-cuda -y &&
 read -p "Okay to restart? (yes/no) " yn
 
 case $yn in
