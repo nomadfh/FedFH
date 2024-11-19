@@ -2,7 +2,11 @@
 # Add dnf config modifications to config file
 echo -e 'max_parallel_downloads=20\ndefaultyes=True' | sudo tee -a /etc/dnf/dnf.conf &&
 # Change hostname
-# echo 'Sitara' | sudo tee /etc/hostname
+echo "Name your computer"
+read hostname
+echo $hostname | sudo tee /etc/hostname &&
+echo "Your hostname will change to $hostname after a reboot" &&
+sleep 3 &&
 # Add Vim as default Text Editor by editing user bashrc
 echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | sudo tee -a ~/.bashrc
 # Save display configs in gnome display manager settings
