@@ -48,7 +48,7 @@ sudo dnf update -y &&
 touch ~/.vimrc &&
 
 # Add fractional scaling support to GNOME
-gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &&
+# gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" &&
 
 # Read user input to restart the system
 read -p "Okay to restart? (yes/no) " yn
