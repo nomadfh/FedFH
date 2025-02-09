@@ -12,8 +12,15 @@ sleep 3 &&
 # Add Vim as default Text Editor by editing user bashrc
 echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | tee -a ~/.bashrc &&
 
-# Save display configs in gnome display manager settings
-sudo cp ~/.config/monitors.xml ~gdm/.config/
+sudo tee /etc/pipewire/pipewire.conf.d/pipewire_modifications.conf > /dev/null << EOF
+# Configuration properties for Pipewire
+context.properties = {
+    default.clock.quantum       = 1024
+    default.clock.min-quantum   = 1024
+}
+EOF
+
+echo "Pipewire configuration has been copied and modified successfully." &&
 
 # Set tap to click on gdm login screen
 xhost SI:localuser:gdm &&
