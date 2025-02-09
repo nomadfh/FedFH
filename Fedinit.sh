@@ -12,6 +12,10 @@ sleep 3 &&
 # Add Vim as default Text Editor by editing user bashrc
 echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | tee -a ~/.bashrc &&
 
+# copy default pipewire configuration to system for custom configurations
+sudo cp -r /usr/share/pipewire /etc &&
+echo copied pipewire config to etc directory &&
+# Create custom pipewire configuration file in pipewire.conf.d directory
 sudo tee /etc/pipewire/pipewire.conf.d/pipewire_modifications.conf > /dev/null << EOF
 # Configuration properties for Pipewire
 context.properties = {
