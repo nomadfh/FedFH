@@ -44,7 +44,7 @@ sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks fastfetch vim tim
 # sudo dnf group install -y --allowerasing Multimedia &&
 
 # Install flatpak applications
-flatpak install -y flathub org.onlyoffice.desktopeditors io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
+flatpak install -y flathub org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 
 # Remove unwanted graphical RPM applications
 sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice* &&
