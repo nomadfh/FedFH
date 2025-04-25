@@ -19,8 +19,8 @@ echo copied pipewire config to etc directory &&
 sudo tee /etc/pipewire/pipewire.conf.d/pipewire_modifications.conf > /dev/null << EOF
 # Configuration properties for Pipewire
 context.properties = {
-    default.clock.quantum       = 1024
-    default.clock.min-quantum   = 1024
+    default.clock.quantum       = 2048
+    default.clock.min-quantum   = 2048
 }
 EOF
 
