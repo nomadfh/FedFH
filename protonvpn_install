@@ -1,0 +1,16 @@
+# Download the package that contains the repository configuration and keys required to install the Proton VPN app
+
+wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.3-1.noarch.rpm"
+
+# Install the Proton VPN repository containing the app
+
+sudo dnf install ./protonvpn-stable-release-1.0.3-1.noarch.rpm && sudo dnf check-update --refresh 
+
+# Install Proton VPN
+
+sudo dnf install proton-vpn-gnome-desktop
+
+# Install the appindicator extension
+
+sudo dnf install libappindicator-gtk3 gnome-shell-extension-appindicator 
+
