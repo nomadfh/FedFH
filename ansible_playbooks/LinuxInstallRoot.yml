@@ -1,0 +1,123 @@
+---
+- name: Install required packages on Red Hat/Fedora
+  hosts: localhost
+  connection: local
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install packages with dnf
+      yum:
+        name:
+          - nss-tools
+          - pcsc-lite
+          - perl-pcsc
+          - pcsc-tools
+          - ccid
+          - opensc
+        state: present
+
+- name: Handle certificates (user tasks)
+  hosts: localhost
+  connection: local
+  become: false
+  vars:
+    user_home: "{{ lookup('env','HOME') }}"
+    cert_url: "https://militarycac.com/maccerts/AllCerts.zip"
+    cert_dir: "{{ user_home }}/DoDcerts"
+    chromium_db: "{{ user_home }}/.pki/nssdb"
+
+  tasks:
+    - name: Detect Firefox profile
+      shell: ls {{ user_home }}/.mozilla/firefox | grep default-release
+      register: firefox_profile
+      changed_when: false
+
+    - name: Set Firefox DB path
+      set_fact:
+        firefox_db: "sql:{{ user_home }}/.mozilla/firefox/{{ firefox_profile.stdout }}"
+
+    - name: Create DoDcerts directory
+      file:
+        path: "{{ cert_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Remove existing certificate bundle
+      file:
+        path: "{{ user_home }}/AllCerts.zip"
+        state: absent
+
+    - name: Download certificate bundle
+      get_url:
+        url: "{{ cert_url }}"
+        dest: "{{ user_home }}/AllCerts.zip"
+
+    - name: Unzip certificate bundle
+      unarchive:
+        src: "{{ user_home }}/AllCerts.zip"
+        dest: "{{ cert_dir }}"
+        remote_src: yes
+
+    - name: Import certificates into Firefox DB
+      shell: |
+        for n in {{ cert_dir }}/*.cer; do
+          cert_name=$(basename "$n" .cer)
+          if ! certutil -L -d {{ firefox_db }} | grep -q "$cert_name"; then
+            certutil -A -d {{ firefox_db }} -i "$n" -n "$cert_name" -t "CT,C,C"
+          fi
+        done
+      args:
+        executable: /bin/bash
+
+    - name: Remove expired Firefox certs
+      shell: |
+        for cert_name in $(certutil -L -d {{ firefox_db }} | grep 'u,u,u' | awk '{print $3}'); do
+          if certutil -V -u C -n "$cert_name" -d {{ firefox_db }} | grep -q 'Not After'; then
+            certutil -D -n "$cert_name" -d {{ firefox_db }}
+          fi
+        done
+      args:
+        executable: /bin/bash
+
+    - name: Import certificates into Chromium DB
+      shell: |
+        for n in {{ cert_dir }}/*.cer; do
+          cert_name=$(basename "$n" .cer)
+          if certutil -L -d {{ chromium_db }} | grep -q "$cert_name" && \
+             [[ "$(certutil -V -u C -n "$cert_name" -d {{ chromium_db }} | grep -c 'Not After')" -eq 0 ]]; then
+            echo "Skipping $cert_name"
+          else
+            certutil -A -d {{ chromium_db }} -i "$n" -n "$cert_name" -t "CT,CT,C"
+          fi
+        done
+      args:
+        executable: /bin/bash
+
+    - name: Remove expired Chromium certs
+      shell: |
+        for cert_name in $(certutil -L -d {{ chromium_db }} | grep 'u,u,u' | awk '{print $3}'); do
+          if certutil -V -u C -n "$cert_name" -d {{ chromium_db }} | grep -q 'Not After'; then
+            certutil -D -n "$cert_name" -d {{ chromium_db }}
+          fi
+        done
+      args:
+        executable: /bin/bash
+
+    - name: Show Firefox certificates
+      shell: certutil -L -d {{ firefox_db }}
+      register: firefox_certs
+      changed_when: false
+
+    - name: Show Chromium certificates
+      shell: certutil -L -d {{ chromium_db }}
+      register: chromium_certs
+      changed_when: false
+
+    - name: Display Firefox certs
+      debug:
+        var: firefox_certs.stdout_lines
+
+    - name: Display Chromium certs
+      debug:
+        var: chromium_certs.stdout_lines
+
