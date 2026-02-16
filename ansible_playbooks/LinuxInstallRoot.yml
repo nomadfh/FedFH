@@ -28,13 +28,13 @@
 
   tasks:
     - name: Detect Firefox profile
-      shell: ls {{ user_home }}/.mozilla/firefox | grep default-release
+      shell: ls {{ user_home }}/.config/mozilla/firefox | grep default-release
       register: firefox_profile
       changed_when: false
 
     - name: Set Firefox DB path
       set_fact:
-        firefox_db: "sql:{{ user_home }}/.mozilla/firefox/{{ firefox_profile.stdout }}"
+        firefox_db: "sql:{{ user_home }}/.config/mozilla/firefox/{{ firefox_profile.stdout }}"
 
     - name: Create DoDcerts directory
       file:
