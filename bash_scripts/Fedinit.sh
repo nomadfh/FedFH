@@ -9,9 +9,6 @@ echo $hostname | sudo tee /etc/hostname &&
 echo "Your hostname will change to $hostname after a reboot" &&
 sleep 3 &&
 
-# Add Vim as default Text Editor by editing user bashrc
-echo -e "export VISUAL=/usr/bin/vim\nexport EDITOR=/usr/bin/vim" | tee -a ~/.bashrc &&
-
 # copy default pipewire configuration to system for custom configurations
 sudo cp -r /usr/share/pipewire /etc &&
 echo copied pipewire config to etc directory &&
@@ -44,7 +41,7 @@ sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks fastfetch vim tim
 # sudo dnf group install -y --allowerasing Multimedia &&
 
 # Install flatpak applications
-flatpak install -y flathub org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC flathub com.github.tchx84.Flatseal flathub org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
+flatpak install -y org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC com.github.tchx84.Flatseal org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 
 # Remove unwanted graphical RPM applications
 sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice* &&
