@@ -32,7 +32,7 @@ else
     # Check if pacman is installed
     elif [ -x /usr/bin/pacman ]; then
         # Install Arch Linux-specific packages
-        sudo pacman -S nss pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools 
+        sudo pacman -Sy opensc ccid pcsclite
         echo "These packages have been installed on your Arch Linux system."
     else
         echo "This is an unknown distribution."
@@ -40,7 +40,7 @@ else
 fi
 echo
 echo
-echo
+echonss pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools 
 sleep 2
 # remove any prexisting bundles
 rm -f AllCerts.zip*
