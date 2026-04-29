@@ -10,22 +10,23 @@ echo "Your hostname will change to $hostname after a reboot" &&
 sleep 3 &&
 
 # copy default pipewire configuration to system for custom configurations
-sudo cp -r /usr/share/pipewire /etc &&
+# sudo cp -r /usr/share/pipewire /etc &&
 echo copied pipewire config to etc directory &&
 # Create custom pipewire configuration file in pipewire.conf.d directory
-sudo tee /etc/pipewire/pipewire.conf.d/pipewire_modifications.conf > /dev/null << EOF
+# sudo tee /etc/pipewire/pipewire.conf.d/pipewire_modifications.conf > /dev/null << EOF
 # Configuration properties for Pipewire
-context.properties = {
-    default.clock.quantum       = 2048
-    default.clock.min-quantum   = 2048
-}
-EOF
+#context.properties = {
+#    default.clock.quantum       = 2048
+#    default.clock.min-quantum   = 2048
+
+#}
+#EOF
 
 echo "Pipewire configuration has been copied and modified successfully." &&
 
 # Set tap to click on gdm login screen
-xhost SI:localuser:gdm &&
-sudo -u gdm gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true &&
+#xhost SI:localuser:gdm &&
+#sudo -u gdm gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true &&
 
 # Add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo &&
