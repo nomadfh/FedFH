@@ -36,13 +36,13 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 
 # Install rpm applications
-sudo dnf install -y VirtualBox tldr powertop htop gnome-tweaks fastfetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
+sudo dnf install -y ansible VirtualBox tldr powertop htop gnome-tweaks fastfetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
 
 # Install multimedia codecs
 # sudo dnf group install -y --allowerasing Multimedia &&
 
 # Install flatpak applications
-flatpak install -y org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC com.github.tchx84.Flatseal org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 com.spotify.Client org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
+flatpak install -y org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC com.github.tchx84.Flatseal org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 
 # Remove unwanted graphical RPM applications
 sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice* &&
