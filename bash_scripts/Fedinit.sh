@@ -36,7 +36,7 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm &&
 
 # Install rpm applications
-sudo dnf install -y ansible VirtualBox tldr powertop htop gnome-tweaks fastfetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices &&
+sudo dnf install -y ansible VirtualBox tldr powertop htop gnome-tweaks fastfetch vim timeshift cmatrix nss-tools pcsc-lite perl-pcsc pcsc-tools ccid opensc openrgb steam-devices libheif libheif-freeworld &&
 
 # Install multimedia codecs
 # sudo dnf group install -y --allowerasing Multimedia &&
