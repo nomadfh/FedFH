@@ -40,7 +40,7 @@ else
 fi
 echo
 echo
-echonss pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools 
+sudo dnf install nss pcsc-tools libccid libpcsc-perl libpcsclite1 pcscd opensc opensc-pkcs11 vsmartcard-vpcd libnss3-tools 
 sleep 2
 # remove any prexisting bundles
 rm -f AllCerts.zip*
@@ -61,11 +61,11 @@ echo "Importing individual .cer files into the Firefox certificate database..."
 for n in *.cer; do
   cert_name="$(basename "$n" .cer)"
  # Check if the certificate is already imported
-  if certutil -L -d ~/.mozilla/firefox/*default-release | grep -q "$cert_name"; then
+  if certutil -L -d ~/.config/mozilla/firefox/*default-release | grep -q "$cert_name"; then
     echo "Certificate $cert_name is already imported. Skipping..."
 else
     echo "Importing $n..."
-    certutil -A -d ~/.mozilla/firefox/*default-release -i "$n" -n "$cert_name" -t "CT,C,C"
+    certutil -A -d ~/.config/mozilla/firefox/*default-release -i "$n" -n "$cert_name" -t "CT,C,C"
   fi
 done
 echo
@@ -77,9 +77,9 @@ echo
 echo
 echo "Removing expired certificates from the Firefox certificate database..."
 for cert_name in $(certutil -L -d ~/.mozilla/firefox/*default-release | grep 'u,u,u' | awk '{print $3}'); do
-  if certutil -V -u C -n "$cert_name" -d ~/.mozilla/firefox/*default-release | grep -q 'Not After'; then
+  if certutil -V -u C -n "$cert_name" -d ~/.config/mozilla/firefox/*default-release | grep -q 'Not After'; then
     echo "Removing expired certificate $cert_name..."
-    certutil -D -n "$cert_name" -d ~/.mozilla/firefox/*default-release
+    certutil -D -n "$cert_name" -d ~/.config/mozilla/firefox/*default-release
   fi
 done
 echo
@@ -92,11 +92,11 @@ echo "Importing individual .cer files into the Chromium certificate database..."
 for n in *.cer; do
   cert_name="$(basename "$n" .cer)"
  # Check if the certificate is already imported or up to date
-  if certutil -L -d ~/.pki/nssdb | grep -q "$cert_name" && [[ "$(certutil -V -u C -n "$cert_name" -d ~/.pki/nssdb | grep -c 'Not After')" -eq 0 ]]; then
+  if certutil -L -d ~/.local/share/pki/nssdb | grep -q "$cert_name" && [[ "$(certutil -V -u C -n "$cert_name" -d ~/.pki/nssdb | grep -c 'Not After')" -eq 0 ]]; then
     echo "Certificate $cert_name is already imported and up to date. Skipping..."
   else
     echo "Importing $n..."
-    certutil -A -d ~/.pki/nssdb -i "$n" -n "$cert_name" -t "CT,CT,C"
+    certutil -A -d ~/.local/share/pki/nssdb -i "$n" -n "$cert_name" -t "CT,CT,C"
   fi
 done
 echo
@@ -106,10 +106,10 @@ echo
 echo
 # Remove expired certificates from the NSSDB certificate database
 echo "Removing expired certificates from the NSSDB certificate database..."
-for cert_name in $(certutil -L -d ~/.pki/nssdb | grep 'u,u,u' | awk '{print $3}'); do
+for cert_name in $(certutil -L -d ~/.local/share/pki/nssdb | grep 'u,u,u' | awk '{print $3}'); do
   if certutil -V -u C -n "$cert_name" -d ~/.pki/nssdb | grep -q 'Not After'; then
     echo "Removing expired certificate $cert_name..."
-    certutil -D -n "$cert_name" -d ~/.pki/nssdb
+    certutil -D -n "$cert_name" -d ~/.local/share/pki/nssdb
   fi
 done
 echo
@@ -119,10 +119,10 @@ echo "Removal of expired certificates from the NSSDB certificate database comple
 # List the contents of the NSSDB certificate database
 echo -e "\n\n\nHere's what's in the NSSDB (EDGE) certificate database..."
 echo -e "\n\n\nHere's what's in the NSSDB (Chromium) certificate database..."
-certutil -L -d ~/.pki/nssdb
+certutil -L -d ~/.local/share/pki/nssdb
 
 # List the contents of the modified Firefox certificate database
 echo -e "\n\n\nHere's what's in the Firefox Certificate Database..."
-certutil -L -d ~/.mozilla/firefox/*default-release
+certutil -L -d ~/.config/mozilla/firefox/*default-release
 echo -e "\n\n\nAll Done!"
 
