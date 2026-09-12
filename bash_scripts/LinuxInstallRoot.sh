@@ -76,7 +76,7 @@ echo
 echo
 echo
 echo "Removing expired certificates from the Firefox certificate database..."
-for cert_name in $(certutil -L -d ~/.mozilla/firefox/*default-release | grep 'u,u,u' | awk '{print $3}'); do
+for cert_name in $(certutil -L -d ~/.config/mozilla/firefox/*default-release | grep 'u,u,u' | awk '{print $3}'); do
   if certutil -V -u C -n "$cert_name" -d ~/.config/mozilla/firefox/*default-release | grep -q 'Not After'; then
     echo "Removing expired certificate $cert_name..."
     certutil -D -n "$cert_name" -d ~/.config/mozilla/firefox/*default-release
