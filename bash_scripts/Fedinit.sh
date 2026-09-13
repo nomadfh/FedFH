@@ -29,7 +29,7 @@ echo "Pipewire configuration has been copied and modified successfully." &&
 #sudo -u gdm gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true &&
 
 # Add flathub repo
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo &&
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo &&
 
 # Add rpm fusion repos
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm &&
@@ -42,7 +42,7 @@ sudo dnf install -y ansible VirtualBox tldr powertop htop gnome-tweaks fastfetch
 # sudo dnf group install -y --allowerasing Multimedia &&
 
 # Install flatpak applications
-flatpak install -y org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC com.github.tchx84.Flatseal org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 org.gnome.FontManager org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
+flatpak install -y flathub org.libreoffice.LibreOffice io.github.realmazharhussain.GdmSettings com.github.avojak.warble org.gnome.Aisleriot org.gnome.Mines org.gnome.Chess org.gnome.SoundRecorder org.videolan.VLC com.github.tchx84.Flatseal org.standardnotes.standardnotes com.mattjakeman.ExtensionManager net.davidotek.pupgui2 org.qbittorrent.qBittorrent io.github.aandrew_me.ytdn com.obsproject.Studio &&
 
 # Remove unwanted graphical RPM applications
 sudo dnf remove -y gnome-boxes gnome-extensions-app libreoffice* &&
